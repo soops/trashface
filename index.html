@@ -23,6 +23,9 @@
     #trash {
         z-index: 2;
     }
+    #info p {
+        margin: 3px;
+    }
     </style>
 
     <script src="bower_components/tracking/build/tracking.js"></script>
@@ -32,6 +35,11 @@
 <body>
     <canvas id="trash"></canvas>
     <video id="video" preload autoplay loop muted></video>
+    <div id="info">
+        <p id="title"><b><u>trashface</u></b></p>
+        <p>check out the dumb source on <a href="https://github.com/soops/trashface">github</a></p>
+        <p>made with <a href="https://trackingjs.com/">tracking.js</a></p>
+    </div>
     <script>
     window.trashcan = new Image();
     window.trashcan.src = 'trash.png'
