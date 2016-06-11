@@ -29,6 +29,8 @@
     <script>
     window.trashcan = new Image();
     window.trashcan.src = 'trash.png'
+    window.scale = 3.5
+    window.debug = false
 
     window.addEventListener('load', function() {
         resizeCanvas();
@@ -42,17 +44,17 @@
 
         window.ctx = window.canvas.getContext("2d");
 
-        window.video.width = window.innerWidth / 3.5;
-        window.video.height = window.innerHeight / 3.5;
+        window.video.width = window.innerWidth / window.scale;
+        window.video.height = window.innerHeight / window.scale;
 
-        document.getElementById("video").style.width = window.innerWidth / 3.5;
-        document.getElementById("video").style.height = window.innerHeight / 3.5;
+        document.getElementById("video").style.width = window.innerWidth / window.scale;
+        document.getElementById("video").style.height = window.innerHeight / window.scale;
 
-        window.canvas.width = window.innerWidth / 3.5;
-        window.canvas.height = window.innerHeight / 3.5;
+        window.canvas.width = window.innerWidth / window.scale;
+        window.canvas.height = window.innerHeight / window.scale;
 
-        document.getElementById("trash").style.width = window.innerWidth / 3.5;
-        document.getElementById("trash").style.height = window.innerHeight / 3.5;
+        document.getElementById("trash").style.width = window.innerWidth / window.scale;
+        document.getElementById("trash").style.height = window.innerHeight / window.scale;
     }
 
     function trackFace() {
