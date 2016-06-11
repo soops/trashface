@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>trash</title>
+    <title>trashface</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <style>
     #video, #trash {
@@ -24,18 +24,9 @@
     <script src="bower_components/dat-gui/build/dat.gui.js"></script>
 </head>
 <body>
-    <script>
-    var host = "soops.github.io";
-    if ((host == window.location.host) && (window.location.protocol != "https:"))
-    window.location.protocol = "https";
-    </script>
     <canvas id="trash"></canvas>
     <video id="video" preload autoplay loop muted></video>
     <script>
-    window.mobilecheck = function() {
-        if(typeof window.orientation !== 'undefined') {return true} else {return false}
-    }
-    
     window.trashcan = new Image();
     window.trashcan.src = 'trash.png'
 
@@ -76,14 +67,14 @@
             window.ctx.clearRect(0, 0, window.canvas.width, window.canvas.height);
 
             event.data.forEach(function(rect) {
-                /*
-                window.ctx.strokeStyle = '#a64ceb';
-                window.ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
-                window.ctx.font = '11px Helvetica';
-                window.ctx.fillStyle = "#fff";
-                window.ctx.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
-                window.ctx.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
-                */
+                if (window.debug === true) {
+                    window.ctx.strokeStyle = '#a64ceb';
+                    window.ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
+                    window.ctx.font = '11px Helvetica';
+                    window.ctx.fillStyle = "#fff";
+                    window.ctx.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
+                    window.ctx.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
+                }
 
                 window.tw = window.trashcan.width;
                 window.th = window.trashcan.height;
