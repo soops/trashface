@@ -10,12 +10,18 @@
         left: 0;
         right: 0;
         margin: auto;
+        -moz-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        transform: scaleX(-1);
+        -ms-filter: fliph; /*IE*/
+        filter: fliph; /*IE*/
     }
     #video {
         z-index: 1;
     }
     #trash {
-        z-index:3;
+        z-index: 2;
     }
     </style>
 
