@@ -24,13 +24,14 @@
     <script src="bower_components/dat-gui/build/dat.gui.js"></script>
 </head>
 <body>
-    <canvas id="trash"></canvas>
-    <video id="video" preload autoplay loop muted></video>
     <script>
     var host = "soops.github.io";
     if ((host == window.location.host) && (window.location.protocol != "https:"))
     window.location.protocol = "https";
-    
+    </script>
+    <canvas id="trash"></canvas>
+    <video id="video" preload autoplay loop muted></video>
+    <script>
     window.mobilecheck = function() {
         if(typeof window.orientation !== 'undefined') {return true} else {return false}
     }
