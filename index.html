@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<head>
+    <title>trash</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <style>
+    #video, #trash {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+    #video {
+        z-index: 1;
+    }
+    #trash {
+        z-index:3;
+    }
+    </style>
+
+    <script src="bower_components/tracking/build/tracking.js"></script>
+    <script src="bower_components/tracking/build/data/face.js"></script>
+    <script src="bower_components/dat-gui/build/dat.gui.js"></script>
+</head>
+<body>
+    <canvas id="trash"></canvas>
+    <video id="video" preload autoplay loop muted></video>
+    <script>
+    window.mobilecheck = function() {
+        if(typeof window.orientation !== 'undefined') {return true} else {return false}
+    }
+    
+    window.trashcan = new Image();
+    window.trashcan.src = 'trash.png'
+
+    window.addEventListener('load', function() {
+        resizeCanvas();
+        trackFace();
+    }, false);
+    window.addEventListener('resize', function() {resizeCanvas()}, false);
+
+    function resizeCanvas(title) {
+        window.video = document.getElementById("video");
+        window.canvas = document.getElementById("trash");
+
+        window.ctx = window.canvas.getContext("2d");
+
+        window.video.width = window.innerWidth / 3.5;
+        window.video.height = window.innerHeight / 3.5;
+
+        document.getElementById("video").style.width = window.innerWidth / 3.5;
+        document.getElementById("video").style.height = window.innerHeight / 3.5;
+
+        window.canvas.width = window.innerWidth / 3.5;
+        window.canvas.height = window.innerHeight / 3.5;
+
+        document.getElementById("trash").style.width = window.innerWidth / 3.5;
+        document.getElementById("trash").style.height = window.innerHeight / 3.5;
+    }
+
+    function trackFace() {
+        var tracker = new tracking.ObjectTracker('face');
+        tracker.setInitialScale(4);
+        tracker.setStepSize(2);
+        tracker.setEdgesDensity(0.1);
+
+        tracking.track('#video', tracker, { camera: true });
+
+        tracker.on('track', function(event) {
+            window.ctx.clearRect(0, 0, window.canvas.width, window.canvas.height);
+
+            event.data.forEach(function(rect) {
+                /*
+                window.ctx.strokeStyle = '#a64ceb';
+                window.ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
+                window.ctx.font = '11px Helvetica';
+                window.ctx.fillStyle = "#fff";
+                window.ctx.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
+                window.ctx.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
+                */
+
+                window.tw = window.trashcan.width;
+                window.th = window.trashcan.height;
+
+                window.trashcan.width = rect.width;
+                window.trashcan.height = window.th * (window.trashcan.width / window.tw);
+
+                window.ctx.drawImage(
+                    window.trashcan,
+                    rect.x,
+                    rect.y,
+                    window.trashcan.width,
+                    window.trashcan.height
+                );
+            });
+        });
+    }
+    </script>
+</body>
